@@ -9,7 +9,7 @@ I feature some of the web's most exciting technologies like: [Gulp](http://gulpj
 
 ### Prerequisites
 
-Because I'm bundled with Gulp, basic knowledge of the command line and the following dependencies are required: [Node](https://nodejs.org), [Gulp CLI](https://github.com/gulpjs/gulp-cli) (`npm install -g gulp-cli`), and [Bower](https://bower.io/) (`npm install -g bower`).
+Because I'm bundled with Gulp, basic knowledge of the command line and the following dependencies are required: [Node](https://nodejs.org), [Gulp CLI](https://github.com/gulpjs/gulp-cli) (`npm install -g gulp-cli`), and [Bower](https://bower.io/) (`npm install -g bower`). Optionally you can also use Yarn as a package manager.
 
 
 ### Setup
@@ -50,11 +50,16 @@ cd /your-project/wordpress/wp-content/themes/your-theme
 ```bash
 npm install && bower install
 ```
+or
+
+```bash
+yarn install && bower install
+```
 
 3) Change const proxy_url in GulpFile.js to your localhost
 
 
-4) Comment out  Kyle's local keys
+4) Comment out or chnage Browsersync HTTPS local keys
 
 
 5) Run Gulp watch
@@ -66,8 +71,6 @@ From the command line, type any of the following to perform an action:
 
 `gulp watch` - Automatically handle changes to CSS, JS, SVGs, and image sprites. Also kicks off BrowserSync.
 
-`gulp icons` - Minify, concatenate, and clean SVG icons.
-
 `gulp i18n` - Scan the theme and create a POT file.
 
 `gulp sass:lint` - Run Sass against WordPress code standards.
@@ -75,8 +78,6 @@ From the command line, type any of the following to perform an action:
 `gulp js:lint` - Run Javascript against WordPress code standards.
 
 `gulp scripts` - Concatenate and minify javascript files.
-
-`gulp sprites` - Generate an image sprite and the associated Sass (sprite.png).
 
 `gulp styles` - Compile, prefix, combine media queries, and minify CSS files.
 
@@ -91,49 +92,48 @@ assets/
 	|
 	|- scripts/						# JavaScript files (all files are minified except those ending in *config.js)
 	|	|- concat/					# All files are concatenated to project.js
-	|	|- project.js 				# Our non-minified development JavaScript file
-	|	|- project-min.js 			# Our minified production JavaScript file
+	|	|- project.js 				# Created from all files inside concat folder
+	|	|- foundation-min.js 		# Our minified foundation JavaScript file. Use Gulp file to load dependancies
 	|
 	|- sass/
 	|	|
-	|	|– base/ 				 	       # Base elements
+	|	|– base/ 				 	  # Base elements
 	|	|   |– _accessibility.scss    # Accessibility
 	|	|   |– _clearing.scss         # Clearing elements
 	|	|   |– _objects-media.scss    # Formatting images, videos, etc.
 	|	|   ...                       # Etc.
 	|	|
 	|	|– components/  		 # Element items that are a combination of base items
-	|	|   |– _comments.scss  # Comments
-	|	|   |– _pagination.scss  # Pagination
+	|	|   |– _comments.scss    # Comments
 	|	|   ...                  # Etc.
 	|	|
-	|	|– foundation/  		 # Foundation 6
-	|	|   |– _settings.scss  # Default Settings (todo: remove)
-	|	|   |– _app.scss       # Load Foundation Components
+	|	|– foundation/  		 # Foundation 6.3.1 (set in package.json)
+	|	|   |– _settings.scss    # Reference of Default Settings (todo: remove)
+	|	|   |– _app.scss         # Load Foundation Components
+	|	|   ...                  # Etc.
 	|	|
 	|	|– modules/ 			 # Sections and content blocks
-	|	|   |– _hero.scss      	  # Hero
-	|	|   |– _slider.scss      # Slider
+	|	|   |– _hero.scss      	 # Hero
 	|	|   ...                  # Etc.
 	|	|
-	|	|– plugins/ 			 # Plugin styles
+	|	|– plugins/ 			        # Plugin styles
 	|	|   |– _gravity-forms.scss      # Gravity Forms
 	|	|   ...                         # Etc.
 	|	|
 	|	|– settings/ 			 # Settings
 	|	|   |– _settings.scss    # Settings
 	|	|
-	|	|– structure/ 			  # Page structure & blocks
+	|	|– structure/ 			 # Page structure & blocks
 	|	|   |– _header.scss      # Header
 	|	|   |– _footer.scss      # Footer
 	|	|   ...                  # Etc.
 	|	|
-	|	|– template/ 				 # Page specific styles
+	|	|– template/ 			 # Page specific styles
 	|	|   |– _front-page.scss  # Home specific styles
 	|	|   |– _page.scss        # Page specific styles
 	|	|   ...                  # Etc.
 	|	|
-	|	|– utilities/ 			  # Functions & Mixins
+	|	|– utilities/ 			 # Functions & Mixins
 	|	|   |– functions/        # Functions
 	|	|   |– mixins            # Mixins
 	|	|
